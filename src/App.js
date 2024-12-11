@@ -14,8 +14,8 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<InputForm />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={< InputForm/>} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

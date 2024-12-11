@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Button, Typography, Link } from '@mui/material';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Hook for navigation
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add authentication logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
+    // Temporary username and password
+    const tempUsername = 'root';
+    const tempPassword = '123';
+
+    if (username === tempUsername && password === tempPassword) {
+      console.log('Login Successful');
+      setErrorMessage(''); // Clear error message on success
+      navigate('/Login'); // Navigate to InputForm component
+    } else {
+      setErrorMessage('Incorrect username or password');
+    }
   };
 
   return (
@@ -37,6 +48,11 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {errorMessage && (
+          <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+            {errorMessage}
+          </Typography>
+        )}
         <Box sx={{ mt: 3 }}>
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Login
